@@ -1,0 +1,17 @@
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\bin\Debug\netcoreapp2.1\WebApi.dll
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\obj\Debug\netcoreapp2.1\WebApi.Test.csprojAssemblyReference.cache
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\obj\Debug\netcoreapp2.1\WebApi.Test.csproj.CoreCompileInputs.cache
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\obj\Debug\netcoreapp2.1\WebApi.Test.AssemblyInfoInputs.cache
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\obj\Debug\netcoreapp2.1\WebApi.Test.AssemblyInfo.cs
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\bin\Debug\netcoreapp2.1\WebApi.Test.deps.json
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\bin\Debug\netcoreapp2.1\WebApi.Test.runtimeconfig.json
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\bin\Debug\netcoreapp2.1\WebApi.Test.runtimeconfig.dev.json
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\bin\Debug\netcoreapp2.1\WebApi.Test.dll
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\bin\Debug\netcoreapp2.1\WebApi.Test.pdb
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\bin\Debug\netcoreapp2.1\WebApi.pdb
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\obj\Debug\netcoreapp2.1\WebApi.Test.csproj.CopyComplete
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\obj\Debug\netcoreapp2.1\WebApi.Test.dll
+C:\Users\rogupta\source\repos\WebApplication1\WebApi.Test\obj\Debug\netcoreapp2.1\WebApi.Test.pdb
