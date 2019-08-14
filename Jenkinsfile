@@ -38,12 +38,7 @@ pipeline {
 			   	
               }
   
-	post {
-	   success{
-		    deleteDir()
-
-                   }
-               }
+	
 }
 
 
