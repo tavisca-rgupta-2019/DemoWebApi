@@ -7,9 +7,12 @@ pipeline {
 	       choice(name: 'RELEASE_ENVIRONMENT', choices: ['Build', 'Test'], description: 'Pick something')
             }
 	stages {
-             when{ params.RELEASE_ENVIRONMENT=='Build' 
-	      }
 		stage('Build') {
+
+	
+             when{ expression {params.RELEASE_ENVIRONMENT=='Build'} 
+	      }
+		
 			steps {
 				
 			     sh'''
@@ -18,16 +21,21 @@ pipeline {
                               '''
 			 }
 			}
-             when{ params.RELEASE_ENVIRONMENT=='Test'
+                stage('Test') {
+			
+             when{ expression {params.RELEASE_ENVIRONMENT=='Test'}
 		}
-		 stage('Test') {
+		
 			steps {
 		              sh'''
+				dotnet restore ${SOLUTION_FILE_PATH} --source https://api.nuget.org/v3/index.json
+				dotnet build ${SOLUTION_FILE_PATH} -p:Configuration=release -v:n
 				dotnet test ${TEST_PROJECT_PATH}
 				
 				'''
 			    }
-			   }	
+                         }
+			   	
               }
   
 	posts {
