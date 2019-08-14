@@ -38,7 +38,7 @@ pipeline {
 			   	
               }
   
-	posts {
+	post {
 	   success{
 		 sh "deleteDir()"
 
