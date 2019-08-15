@@ -40,14 +40,14 @@ pipeline {
 	   success{
 			
 		
-		   script {
+		   
 zip zipFile: 'StableRelease.zip', dir: 'C:/Program Files (x86)/Jenkins/workspace/RohitAPIPipeline/WebApplication1/bin/Release/netcoreapp2.1', glob: ''
                            archiveArtifacts artifacts: 'StableRelease.zip', fingerprint: false, allowEmptyArchive: false, onlyIfSuccessful: true;
 			   deleteDir()
 			 
 
 		           
-		          }
+		          
                
                    }
                }
