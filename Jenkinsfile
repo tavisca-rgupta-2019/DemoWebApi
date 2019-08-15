@@ -3,14 +3,13 @@ pipeline {
 	parameters {
 	       string(name : 'GIT_HTTPS_PATH', defaultValue: 'https://github.com/tavisca-rgupta-2019/DemoWebApi.git')
 	       string(name : 'SOLUTION_FILE_PATH', defaultValue: 'WebApplication1.sln')
+	       string(name : 'PROJECT_FILE_PATH', defaultValue: 'WebApplication1/WebApi.csproj')
                string(name : 'TEST_PROJECT_PATH', defaultValue: 'WebApi.Test/WebApi.Test.csproj')
-	       choice(name: 'RELEASE_ENVIRONMENT', choices: ['Build', 'Test', 'Publish', 'Deploy'], description: 'Pick something')
+	       choice(name: 'RELEASE_ENVIRONMENT', choices: ['Build', 'Test', 'Publish'], description: 'Pick something')
             }
 	stages {
 		stage('Build') {
-
-	
-			when{ anyOf {expression {params.RELEASE_ENVIRONMENT=='Build'}; expression {params.RELEASE_ENVIRONMENT=='Test'}}
+when{ anyOf {expression {params.RELEASE_ENVIRONMENT=='Build'}; expression {params.RELEASE_ENVIRONMENT=='Test'}; expression {params.RELEASE_ENVIRONMENT=='Publish'}}
 	      }
 		
 			steps {
@@ -34,24 +33,20 @@ pipeline {
 				'''
 			    }
                          }
+		stage('Publish') {
+			when{expression {params.RELEASE_ENVIRONMENT=='Publish"}
+		       }
+			     steps {
+				   powershell '''
+				    dotnet publish ${PROJECT_FILE_PATH}
+				    '''
+				 
+			     }
+		 }
+		
 			   	
               }
-	post {
-	   success{
-			
-		   script{
-		   
-zip zipFile: 'StableRelease.zip', dir: 'C:/Program Files (x86)/Jenkins/workspace/RohitAPIPipeline/WebApplication1/bin/Release/netcoreapp2.1', glob: ''
-                           archiveArtifacts artifacts: 'StableRelease.zip', fingerprint: false, allowEmptyArchive: false, onlyIfSuccessful: true;
-			   deleteDir()
-			 
-		   }
-		           
-		          
-               
-                   }
-               }
-  
+	
 	
 }
 
