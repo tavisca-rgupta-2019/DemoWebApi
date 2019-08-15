@@ -10,7 +10,7 @@ pipeline {
 		stage('Build') {
 
 	
-			when{ params.RELEASE_ENVIRONMENT=='Build'} || params.RELEASE_ENVIRONMENT=='Test'}
+			when{ params.RELEASE_ENVIRONMENT=='Build' || params.RELEASE_ENVIRONMENT=='Test'
 	      }
 		
 			steps {
