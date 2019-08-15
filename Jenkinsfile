@@ -34,7 +34,7 @@ when{ anyOf {expression {params.RELEASE_ENVIRONMENT=='Build'}; expression {param
 			    }
                          }
 		stage('Publish') {
-			when{expression {params.RELEASE_ENVIRONMENT=='Publish"}
+			when{expression {params.RELEASE_ENVIRONMENT=='Publish'}
 		       }
 			     steps {
 				   powershell '''
