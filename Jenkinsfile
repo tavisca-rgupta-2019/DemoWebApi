@@ -41,9 +41,7 @@ pipeline {
 	   success{
 			
 		powershell '''mkdir archive
-                              echo test > archive/test.txt
-	                   '''
-		         zip  zipFile: 'test.zip', archive: false, dir: 'archive'
+                           '''
                
                    }
                }
