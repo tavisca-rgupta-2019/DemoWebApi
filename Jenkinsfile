@@ -41,6 +41,7 @@ pipeline {
 	   success{
 			
 		powershell '''mkdir archive
+			      echo test > archive/test.txt
                            '''
                
                    }
