@@ -4,13 +4,13 @@ pipeline {
 	       string(name : 'GIT_HTTPS_PATH', defaultValue: 'https://github.com/tavisca-rgupta-2019/DemoWebApi.git')
 	       string(name : 'SOLUTION_FILE_PATH', defaultValue: 'WebApplication1.sln')
                string(name : 'TEST_PROJECT_PATH', defaultValue: 'WebApi.Test/WebApi.Test.csproj')
-	       choice(name: 'RELEASE_ENVIRONMENT', choices: ['Build', 'Test'], description: 'Pick something')
+	       choice(name: 'RELEASE_ENVIRONMENT', choices: ['Build', 'Test', 'Publish', 'Deploy'], description: 'Pick something')
             }
 	stages {
 		stage('Build') {
 
 	
-			when{ anyOf {expression {params.RELEASE_ENVIRONMENT=='Build'}; expression {params.RELEASE_ENVIRONMENT=='Test'}}
+			when{ expression {params.RELEASE_ENVIRONMENT=='Build'} || expression {params.RELEASE_ENVIRONMENT=='Test'}}
 	      }
 		
 			steps {
