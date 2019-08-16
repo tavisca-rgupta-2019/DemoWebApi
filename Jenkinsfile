@@ -50,9 +50,9 @@ pipeline {
 		steps {
 		powershell'''
 			Compress-Archive -Path WebApplication1/bin/Release/netcoreapp2.1/publish/* StableRelease.zip
-                	
+                	'''
                          archiveArtifacts artifacts: 'StableRelease.zip', fingerprint: false, allowEmptyArchive: false, onlyIfSuccessful: true;
-                       '''
+                       
                     }
                }
 		
