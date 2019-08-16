@@ -48,9 +48,11 @@ pipeline {
 	     when{ expression {params.RELEASE_ENVIRONMENT=='Publish'}
             }
 		steps {
-			zip zipFile: 'StableRelease.zip', dir: 'C:/Program Files (x86)/Jenkins/workspace/RohitAPIPipeline/WebApplication1/bin/Release/netcoreapp2.1/publish', glob: ''
+		powershell'''
+                	zip zipFile: 'StableRelease.zip', dir: 'C:/Program Files (x86)/Jenkins/workspace/RohitAPIPipeline/WebApplication1/bin/Release/netcoreapp2.1/publish', glob: ''
 
                          archiveArtifacts artifacts: 'StableRelease.zip', fingerprint: false, allowEmptyArchive: false, onlyIfSuccessful: true;
+                       '''
                     }
                }
 		
