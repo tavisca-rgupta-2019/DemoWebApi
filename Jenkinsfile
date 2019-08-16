@@ -40,7 +40,7 @@ pipeline {
              }
 		      steps {
 		      powershell'''
-			     dotnet publish ${PROJECT_FILE_PATH}
+			     dotnet publish ${PROJECT_FILE_PATH} -p:Configuration=release -v:n
 			    '''
                         }
                }
