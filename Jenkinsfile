@@ -49,7 +49,7 @@ pipeline {
             }
 		steps {
 		powershell'''
-			Compress-Archive -Path C:/Program Files (x86)/Jenkins/workspace/RohitAPIPipeline/WebApplication1/bin/Release/netcoreapp2.1/publish/* StableRelease.zip
+			Compress-Archive -Path WebApplication1/bin/Release/netcoreapp2.1/publish/* StableRelease.zip
                 	
                          archiveArtifacts artifacts: 'StableRelease.zip', fingerprint: false, allowEmptyArchive: false, onlyIfSuccessful: true;
                        '''
