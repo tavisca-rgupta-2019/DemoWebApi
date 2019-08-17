@@ -5,7 +5,13 @@ pipeline {
 	       string(name : 'SOLUTION_FILE_PATH', defaultValue: 'WebApplication1.sln')
                string(name : 'TEST_PROJECT_PATH', defaultValue: 'WebApi.Test/WebApi.Test.csproj')
                string(name : 'PROJECT_FILE_PATH', defaultValue: 'WebApplication1/WebApi.csproj')
+	       string(name : 'SOLUTION_DLL_FILE', defaultValue: 'WebApi.dll')
+	       string(name : 'DOCKERHUB_USERNAME', defaultValue: 'rohit1998')
+	       string(name : 'BUILD_VERSION', defaultValue: '1.0')
+	       string(name : 'PROJECT_NAME', defaultValue: 'demowebapi')
+	       string(name : 'DOCKERHUB_PASSWORD', defaultValue: 'rohit1998$$$')
 	       choice(name: 'RELEASE_ENVIRONMENT', choices: ['Build', 'Test','Publish'], description: 'Pick something')
+	       
             }
 	stages {
 		stage('Build') {
@@ -44,20 +50,23 @@ pipeline {
 			    '''
                         }
                }
-	     stage('Archiving_Artifacts') {
+	    
+	    stage('Preparing_Docker_Image') {
 	     when{ expression {params.RELEASE_ENVIRONMENT=='Publish'}
             }
 		steps {
-		powershell'''
-			Compress-Archive -Path WebApplication1/bin/Release/netcoreapp2.1/publish/* StableRelease.zip -Update
-                	'''
-                         archiveArtifacts artifacts: 'StableRelease.zip', fingerprint: false, allowEmptyArchive: false, onlyIfSuccessful: true;
-                       
-                    }
-               }
-		
-			   	
-              }
+			 writeFile file: 'WebApplication1/bin/Debug/netcoreapp2.1/publish/Dockerfile', text: '''
+				FROM mcr.microsoft.com/dotnet/core/aspnet\n
+				CMD ["dotnet", "${SOLUTION_DLL_FILE}"]\n'''
+			 powershell '''
+					docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ --tag=${PROJECT_NAME}:${BUILD_VERSION}
+					docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}
+					docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}
+					docker push ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}
+				   '''
+			}
+	       }
+	   }
 	post{
 		success{
 			deleteDir()
