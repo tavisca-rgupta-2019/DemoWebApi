@@ -58,12 +58,12 @@ pipeline {
 			 writeFile file: 'WebApplication1/bin/Debug/netcoreapp2.1/publish/Dockerfile', text: '''
 				FROM mcr.microsoft.com/dotnet/core/aspnet\n
 				CMD ["dotnet", "${SOLUTION_DLL_FILE}"]\n'''
-			 powershell '''
-					docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ -t=${PROJECT_NAME}:${BUILD_VERSION}
-					docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}
-					docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}
-					docker push ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}
-				   '''
+			 
+				powershell "docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ -t=${PROJECT_NAME}:${BUILD_VERSION}"
+				powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}"
+			        powershell "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
+				powershell "docker push ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}"
+				  
 			}
 	       }
 	   }
