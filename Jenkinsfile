@@ -61,7 +61,7 @@ pipeline {
 				COPY . ./app\n
 				EXPOSE 80\n
 				CMD ["dotnet", "WebApi.dll"]\n'''
-				bat '''       docker login --username=rohit --password=rohit1998$$$
+				powershell '''docker login --username=rohit --password=rohit1998$$$
 					      docker build WebApi/bin/Release/netcoreapp2.1/publish/ --tag=rohit1998/${PROJECT_NAME}:${BUILD_VERSION}
 				             
 					      
