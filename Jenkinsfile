@@ -61,10 +61,11 @@ pipeline {
 				COPY . ./app\n
 				EXPOSE 80\n
 				CMD ["dotnet", "WebApi.dll"]\n'''
-				bat '''docker build WebApi/bin/Release/netcoreapp2.1/publish/ --tag=${PROJECT_NAME}:${BUILD_VERSION}
-				              docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}
-				              docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}
-                                              docker push ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}'''
+				bat '''       docker login --username=rohit --password=rohit1998$$$
+					      docker build WebApi/bin/Release/netcoreapp2.1/publish/ --tag=rohit1998/${PROJECT_NAME}:${BUILD_VERSION}
+				             
+					      
+                                              docker push rohit1998/${PROJECT_NAME}:${BUILD_VERSION}'''
 			 
 				
 				
