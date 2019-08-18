@@ -61,8 +61,9 @@ pipeline {
 				COPY . ./app\n
 				EXPOSE 80\n
 				CMD ["dotnet", "WebApi.dll"]\n'''
-				powershell "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
+				
 					     powershell "docker build WebApi/bin/Release/netcoreapp2.1/publish/ --tag=${PROJECT_NAME}:${BUILD_NUMBER}"
+					     powershell "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
 				             
 					      powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
                                               powershell "docker push rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
