@@ -9,7 +9,7 @@ pipeline {
 	       string(name : 'DOCKERHUB_USERNAME', defaultValue: 'rohit1998')
 	       string(name : 'BUILD_VERSION', defaultValue: '1.0')
 	       string(name : 'PROJECT_NAME', defaultValue: 'demowebapi')
-	       string(name : 'DOCKERHUB_PASSWORD', defaultValue: 'rohit1998$$$')
+	       string(name : 'DOCKERHUB_PASSWORD', defaultValue: 'rohit1998password')
 	       choice(name: 'RELEASE_ENVIRONMENT', choices: ['Build', 'Test','Publish'], description: 'Pick something')
 	       
             }
