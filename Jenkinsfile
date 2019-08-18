@@ -59,13 +59,9 @@ pipeline {
 				FROM mcr.microsoft.com/dotnet/core/aspnet\n
 				CMD ["dotnet", "${SOLUTION_DLL_FILE}"]\n'''
 			 
-				powershell '''docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ -t=${PROJECT_NAME}:${BUILD_VERSION} .
+				powershell '''docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ -t=${PROJECT_NAME}:${BUILD_VERSION} .'''
                                 
-				docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}'''
-				 powershell '''
-				docker login -u rohit1998 -p rohit1998$$$
-				docker push ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}'''
-				  
+				
 				
                                
 			       
