@@ -62,7 +62,7 @@ pipeline {
 				EXPOSE 80\n
 				CMD ["dotnet", "WebApi.dll"]\n'''
 				
-					     powershell "docker build WebApi/bin/Release/netcoreapp2.1/publish/ --tag=${PROJECT_NAME}:${BUILD_NUMBER}"
+					     powershell "docker build WebApplication1/bin/Release/netcoreapp2.1/publish/ --tag=${PROJECT_NAME}:${BUILD_NUMBER}"
 					     powershell "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
 				             
 					      powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
@@ -77,7 +77,7 @@ pipeline {
 	       }
 	   }
 	 post{
-		success{
+		always{
 			deleteDir()
 		}
 	  }
