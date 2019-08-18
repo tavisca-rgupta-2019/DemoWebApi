@@ -57,9 +57,9 @@ pipeline {
 		steps {
 			 writeFile file: 'WebApplication1/bin/Release/netcoreapp2.1/publish/Dockerfile', text: '''
 				FROM mcr.microsoft.com/dotnet/core/aspnet\n
-				WORKDIR /app
-				COPY . ./app
-				EXPOSE 80
+				WORKDIR /app\n
+				COPY . ./app\n
+				EXPOSE 80\n
 				CMD ["dotnet", "WebApi.dll"]\n'''
 				powershell '''docker build WebApi/bin/Release/netcoreapp2.1/publish/ --tag=${PROJECT_NAME}:${BUILD_VERSION}
 				docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}
