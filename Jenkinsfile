@@ -59,10 +59,11 @@ pipeline {
 				FROM mcr.microsoft.com/dotnet/core/aspnet\n
 				CMD ["dotnet", "${SOLUTION_DLL_FILE}"]\n'''
 			 
-				powershell "docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ -t=${PROJECT_NAME}:${BUILD_VERSION}"
+				powershell '''docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ -t=${PROJECT_NAME}:${BUILD_VERSION}"
                                 
-				powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}"
-				echo "params.DOCKERHUB_USERNAME  params.DOCKERHUB_PASSWORD"
+				docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}'''
+				echo ${params.DOCKERHUB_USERNAME}
+                                echo ${params.DOCKERHUB_PASSWORD}
                                
 			       
 			}
