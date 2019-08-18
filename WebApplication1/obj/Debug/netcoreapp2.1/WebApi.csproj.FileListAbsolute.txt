@@ -17,7 +17,6 @@ C:\Users\rogupta\source\repos\WebApi1\WebApplication1\bin\Debug\netcoreapp2.1\We
 C:\Users\rogupta\source\repos\WebApi1\WebApplication1\bin\Debug\netcoreapp2.1\WebApi.runtimeconfig.dev.json
 C:\Users\rogupta\source\repos\WebApi1\WebApplication1\bin\Debug\netcoreapp2.1\WebApi.dll
 C:\Users\rogupta\source\repos\WebApi1\WebApplication1\bin\Debug\netcoreapp2.1\WebApi.pdb
-C:\Users\rogupta\source\repos\WebApi1\WebApplication1\obj\Debug\netcoreapp2.1\WebApi.csprojAssemblyReference.cache
 C:\Users\rogupta\source\repos\WebApi1\WebApplication1\obj\Debug\netcoreapp2.1\WebApi.csproj.CoreCompileInputs.cache
 C:\Users\rogupta\source\repos\WebApi1\WebApplication1\obj\Debug\netcoreapp2.1\WebApi.RazorAssemblyInfo.cache
 C:\Users\rogupta\source\repos\WebApi1\WebApplication1\obj\Debug\netcoreapp2.1\WebApi.RazorAssemblyInfo.cs
