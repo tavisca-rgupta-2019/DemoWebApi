@@ -57,10 +57,12 @@ pipeline {
 		steps {
 			 writeFile file: 'WebApplication1/bin/Debug/netcoreapp2.1/publish/Dockerfile', text: '''
 				FROM mcr.microsoft.com/dotnet/core/aspnet\n
-				CMD ["dotnet", "${SOLUTION_DLL_FILE}"]\n'''
+				WORKDIR /app
+				COPY . ./app
+				EXPOSE 80
+				CMD ["dotnet", "WebApi.dll"]\n'''
 			 
-				powershell '''docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ -t=${PROJECT_NAME}:${BUILD_VERSION} .'''
-                                
+				
 				
 				
                                
@@ -68,13 +70,7 @@ pipeline {
 			}
 	       }
 	   }
-	post{
-		success{
-			deleteDir()
-			}
-		}
 	
-	    
   
 	
 }
