@@ -55,7 +55,7 @@ pipeline {
 	     when{ expression {params.RELEASE_ENVIRONMENT=='Publish'}
             }
 		steps {
-			 writeFile file: 'WebApplication1/bin/Debug/netcoreapp2.1/publish/Dockerfile', text: '''
+			 writeFile file: 'WebApplication1/bin/Release/netcoreapp2.1/publish/Dockerfile', text: '''
 				FROM mcr.microsoft.com/dotnet/core/aspnet\n
 				WORKDIR /app
 				COPY . ./app
