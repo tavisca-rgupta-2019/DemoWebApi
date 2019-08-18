@@ -61,7 +61,7 @@ pipeline {
 			 
 				powershell "docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ -t=${PROJECT_NAME}:${BUILD_VERSION}"
 				powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}"
-			        powershell "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
+			        powershell "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
 				powershell "docker push ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}"
 				  
 			}
