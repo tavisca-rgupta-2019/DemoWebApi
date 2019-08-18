@@ -60,10 +60,11 @@ pipeline {
 				CMD ["dotnet", "${SOLUTION_DLL_FILE}"]\n'''
 			 
 				powershell "docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ -t=${PROJECT_NAME}:${BUILD_VERSION}"
+                                
 				powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}"
-			        powershell "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
-				powershell "docker push ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}"
-				  
+				echo "params.DOCKERHUB_USERNAME  params.DOCKERHUB_PASSWORD"
+                               
+			       
 			}
 	       }
 	   }
