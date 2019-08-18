@@ -62,8 +62,8 @@ pipeline {
 				powershell '''docker build WebApplication1/bin/Debug/netcoreapp2.1/publish/ -t=${PROJECT_NAME}:${BUILD_VERSION}"
                                 
 				docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}'''
-				echo ${params.DOCKERHUB_USERNAME}
-                                echo ${params.DOCKERHUB_PASSWORD}
+				echo "${params.DOCKERHUB_USERNAME}"
+                                echo "${params.DOCKERHUB_PASSWORD}"
                                
 			       
 			}
