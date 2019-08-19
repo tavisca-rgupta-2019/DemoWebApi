@@ -9,7 +9,7 @@ pipeline {
 	       string(name : 'DOCKERHUB_USERNAME', defaultValue: 'rohit1998')
 	       string(name : 'BUILD_VERSION', defaultValue: '1.0')
 	       string(name : 'PROJECT_NAME', defaultValue: 'demowebapi')
-	       string(name : 'DOCKERHUB_PASSWORD', defaultValue: 'rohit1998$$$')
+	       string(name : 'DOCKERHUB_PASSWORD', defaultValue: 'rohit1998password')
 	       choice(name: 'RELEASE_ENVIRONMENT', choices: ['Build', 'Test','Publish'], description: 'Pick something')
 	       
             }
@@ -61,10 +61,12 @@ pipeline {
 				COPY . ./app\n
 				EXPOSE 80\n
 				CMD ["dotnet", "WebApi.dll"]\n'''
-				bat '''docker build WebApi/bin/Release/netcoreapp2.1/publish/ --tag=${PROJECT_NAME}:${BUILD_VERSION}
-				              docker tag ${PROJECT_NAME}:${BUILD_VERSION} ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}
-				              docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}
-                                              docker push ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${BUILD_VERSION}'''
+				
+					     powershell "docker build WebApplication1/bin/Release/netcoreapp2.1/publish/ --tag=${PROJECT_NAME}:${BUILD_NUMBER}"
+					     powershell "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
+				             
+					      powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
+                                              powershell "docker push rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
 			 
 				
 				
@@ -75,7 +77,7 @@ pipeline {
 	       }
 	   }
 	 post{
-		success{
+		always{
 			deleteDir()
 		}
 	  }
