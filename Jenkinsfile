@@ -57,7 +57,7 @@ pipeline {
 		steps {
 			
 				
-					     powershell "docker build --tag=${PROJECT_NAME}:${BUILD_NUMBER}"
+					     powershell "docker build --tag=${PROJECT_NAME}:${BUILD_NUMBER} ."
 					     powershell "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
 				             
 					      powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
