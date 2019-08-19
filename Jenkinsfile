@@ -42,7 +42,7 @@ pipeline {
 			    }
                          }
                stage('Publish') {
-	      when{ expression {params.RELEASE_ENVIRONMENT=='Publish'}
+	      when{ expression {params.RELEASE_ENVIRONMENT=='Publish' }
              }
 		      steps {
 		      powershell'''
@@ -55,14 +55,9 @@ pipeline {
 	     when{ expression {params.RELEASE_ENVIRONMENT=='Publish'}
             }
 		steps {
-			 writeFile file: 'WebApplication1/bin/Release/netcoreapp2.1/publish/Dockerfile', text: '''
-				FROM mcr.microsoft.com/dotnet/core/aspnet\n
-				WORKDIR /app\n
-				COPY . ./app\n
-				EXPOSE 80\n
-				CMD ["dotnet", "WebApi.dll"]\n'''
+			
 				
-					     powershell "docker build WebApplication1/bin/Release/netcoreapp2.1/publish/ --tag=${PROJECT_NAME}:${BUILD_NUMBER}"
+					     powershell "docker build --tag=${PROJECT_NAME}:${BUILD_NUMBER} ."
 					     powershell "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
 				             
 					      powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
