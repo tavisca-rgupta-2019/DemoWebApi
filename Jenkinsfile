@@ -57,8 +57,9 @@ pipeline {
 		steps {
 			 writeFile file: 'WebApplication1/bin/Release/netcoreapp2.1/publish/Dockerfile', text: '''
 				FROM mcr.microsoft.com/dotnet/core/aspnet\n
+				
+				COPY  WebApplication1/bin/Release/netcoreapp2.1/publish /app\n
 				WORKDIR /app\n
-				COPY  WebApplication1/bin/Release/netcoreapp2.1/publish/* ./\n
 				EXPOSE 80\n
 				CMD ["dotnet", "WebApi.dll"]\n'''
 				
