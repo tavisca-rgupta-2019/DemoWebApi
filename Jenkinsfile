@@ -24,8 +24,8 @@ pipeline {
 				
 		     sh'''
 				
-				dotnet restore ${SOLUTION_FILE_PATH} --source https://api.nuget.org/v3/index.json
-				dotnet build ${SOLUTION_FILE_PATH} -p:Configuration=release -v:n
+				/home/ec2-user/dotnet/dotnet restore ${SOLUTION_FILE_PATH} --source https://api.nuget.org/v3/index.json
+				/home/ec2-user/dotnet/dotnet build ${SOLUTION_FILE_PATH} -p:Configuration=release -v:n
                               '''
 			 }
 			}
@@ -37,7 +37,7 @@ pipeline {
 			steps {
 		       sh'''
 				
-				dotnet test ${TEST_PROJECT_PATH}
+				/home/ec2-user/dotnet/dotnet test ${TEST_PROJECT_PATH}
 				
 				'''
 			    }
@@ -48,7 +48,7 @@ pipeline {
 		      steps {
 		      sh'''
 			    
-			     dotnet publish ${PROJECT_FILE_PATH} -p:Configuration=release -v:n
+			     /home/ec2-user/dotnet/dotnet publish ${PROJECT_FILE_PATH} -p:Configuration=release -v:n
 			    '''
                         }
                }
