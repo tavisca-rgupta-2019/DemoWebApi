@@ -23,8 +23,7 @@ pipeline {
 			steps {
 				
 		     sh'''
-				dotnet C:/sonar/SonarScanner.MSBuild.dll begin /k:"WebApiDeployment" /d:sonar.host.url="http://localhost:9000" /d:sonar.login="fb475cd759a65a4ca1beaf013807ee97cf18d222"
-
+				
 				dotnet restore ${SOLUTION_FILE_PATH} --source https://api.nuget.org/v3/index.json
 				dotnet build ${SOLUTION_FILE_PATH} -p:Configuration=release -v:n
                               '''
@@ -48,7 +47,7 @@ pipeline {
              }
 		      steps {
 		      sh'''
-			     dotnet C:/sonar/SonarScanner.MSBuild.dll end /d:sonar.login="fb475cd759a65a4ca1beaf013807ee97cf18d222"
+			    
 			     dotnet publish ${PROJECT_FILE_PATH} -p:Configuration=release -v:n
 			    '''
                         }
