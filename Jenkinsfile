@@ -65,6 +65,7 @@ pipeline {
 				             
 					      powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
                                               powershell "docker push rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
+			powershell "docker run -d -p 5000:80 ${PROJECT_NAME}:${BUILD_NUMBER}"
 			 
 				
 				
@@ -74,11 +75,7 @@ pipeline {
 			}
 	       }
 	   }
-	 post{
-		always{
-			deleteDir()
-		}
-	  }
+	
 	
   
 	
