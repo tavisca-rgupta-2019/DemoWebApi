@@ -22,7 +22,7 @@ pipeline {
 		
 			steps {
 				
-		    powershell'''
+		     sh'''
 				dotnet C:/sonar/SonarScanner.MSBuild.dll begin /k:"WebApiDeployment" /d:sonar.host.url="http://localhost:9000" /d:sonar.login="fb475cd759a65a4ca1beaf013807ee97cf18d222"
 
 				dotnet restore ${SOLUTION_FILE_PATH} --source https://api.nuget.org/v3/index.json
@@ -36,7 +36,7 @@ pipeline {
 		}
 		
 			steps {
-		       powershell'''
+		       sh'''
 				
 				dotnet test ${TEST_PROJECT_PATH}
 				
@@ -47,7 +47,7 @@ pipeline {
 	      when{ expression {params.RELEASE_ENVIRONMENT=='Publish' }
              }
 		      steps {
-		      powershell'''
+		      sh'''
 			     dotnet C:/sonar/SonarScanner.MSBuild.dll end /d:sonar.login="fb475cd759a65a4ca1beaf013807ee97cf18d222"
 			     dotnet publish ${PROJECT_FILE_PATH} -p:Configuration=release -v:n
 			    '''
@@ -60,12 +60,12 @@ pipeline {
 		steps {
 			
 				
-					     powershell "docker build --tag=${PROJECT_NAME}:${BUILD_NUMBER} ."
-					     powershell "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
+					     sh "docker build --tag=${PROJECT_NAME}:${BUILD_NUMBER} ."
+					     sh "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
 				             
-					      powershell "docker tag ${PROJECT_NAME}:${BUILD_VERSION} rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
-                                              powershell "docker push rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
-			powershell "docker run -d -p 5000:80 ${PROJECT_NAME}:${BUILD_NUMBER}"
+					      sh "docker tag ${PROJECT_NAME}:${BUILD_VERSION} rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
+                                              sh "docker push rohit1998/${PROJECT_NAME}:${BUILD_NUMBER}"
+			sh "docker run -d -p 5000:80 ${PROJECT_NAME}:${BUILD_NUMBER}"
 			 
 				
 				
